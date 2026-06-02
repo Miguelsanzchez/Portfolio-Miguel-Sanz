@@ -1,3 +1,4 @@
+import { LanguageProvider } from './i18n/LanguageContext'
 import { Header } from './components/layout/Header'
 import { Hero } from './sections/Hero'
 import { About } from './sections/About'
@@ -10,18 +11,20 @@ import { Contact } from './sections/Contact'
 
 export default function App() {
   return (
-    <div className="min-h-screen bg-[#09090b] text-zinc-50 antialiased">
-      <Header />
-      <main>
-        <Hero />
-        <About />
-        <Education />
-        <Skills />
-        <Projects />
-        <SecurityHighlights />
-        <Experience />
-        <Contact />
-      </main>
-    </div>
+    <LanguageProvider>
+      <div className="min-h-screen bg-[#09090b] text-zinc-50 antialiased">
+        <Header />
+        <main>
+          <Hero />
+          <About />
+          <Education />
+          <Skills />
+          <Projects />
+          <SecurityHighlights />
+          <Experience />
+          <Contact />
+        </main>
+      </div>
+    </LanguageProvider>
   )
 }

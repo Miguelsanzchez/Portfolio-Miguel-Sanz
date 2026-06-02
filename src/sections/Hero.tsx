@@ -1,20 +1,22 @@
 import { motion } from 'framer-motion'
 import { MapPin, ArrowDown } from 'lucide-react'
-import { portfolio } from '../content/portfolio'
+import { usePortfolio } from '../hooks/usePortfolio'
+import { useStrings } from '../i18n/strings'
 import { fadeInUp, staggerContainer } from '../lib/animations'
 
-const terminalLines = [
-  { isCommand: true,  text: 'whoami' },
-  { isCommand: false, text: portfolio.personal.name },
-  { isCommand: true,  text: 'cat titulo.txt' },
-  { isCommand: false, text: `${portfolio.personal.title} · ${portfolio.personal.subtitle}` },
-  { isCommand: true,  text: 'cat disponibilidad.txt' },
-  { isCommand: false, text: '✓  Disponible · Incorporación inmediata' },
-  { isCommand: true,  text: '' },
-]
-
 export function Hero() {
-  const { personal } = portfolio
+  const { personal } = usePortfolio()
+  const t = useStrings()
+
+  const terminalLines = [
+    { isCommand: true,  text: 'whoami' },
+    { isCommand: false, text: personal.name },
+    { isCommand: true,  text: 'cat titulo.txt' },
+    { isCommand: false, text: `${personal.title} · ${personal.subtitle}` },
+    { isCommand: true,  text: 'cat disponibilidad.txt' },
+    { isCommand: false, text: t.hero.terminalAvailable },
+    { isCommand: true,  text: '' },
+  ]
 
   return (
     <section id="inicio" className="relative min-h-screen flex items-center overflow-hidden bg-black">
@@ -42,7 +44,7 @@ export function Hero() {
         transition={{ duration: 12, repeat: Infinity, ease: 'easeInOut', delay: 3 }}
       />
 
-      {/* Línea inferior plateada */}
+      {/* Línea inferior */}
       <div
         className="absolute bottom-0 inset-x-0 h-px pointer-events-none"
         style={{
@@ -54,10 +56,8 @@ export function Hero() {
       <div className="relative max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-32 w-full">
         <div className="grid lg:grid-cols-2 gap-20 items-center">
 
-          {/* ── Izquierda ─────────────────────────────────── */}
           <motion.div variants={staggerContainer} initial="hidden" animate="visible">
 
-            {/* Badge disponible — verde */}
             {personal.available && (
               <motion.div variants={fadeInUp} className="inline-flex items-center gap-2.5 mb-10">
                 <span className="relative flex h-1.5 w-1.5">
@@ -65,15 +65,14 @@ export function Hero() {
                   <span className="relative inline-flex rounded-full h-1.5 w-1.5 bg-emerald-500" />
                 </span>
                 <span className="text-[11px] font-mono text-zinc-500 tracking-[0.2em] uppercase">
-                  Disponible para trabajar en España
+                  {t.hero.available}
                 </span>
               </motion.div>
             )}
 
-            {/* Nombre cromado */}
             <motion.div variants={fadeInUp}>
               <p className="text-zinc-700 font-mono text-[10px] tracking-[0.3em] uppercase mb-3">
-                Hola, soy
+                {t.hero.hello}
               </p>
               <h1 className="text-6xl sm:text-7xl lg:text-8xl font-black tracking-tighter leading-[0.9] mb-6 relative">
                 <span className="text-chrome">{personal.name}</span>
@@ -88,7 +87,6 @@ export function Hero() {
               </h1>
             </motion.div>
 
-            {/* Título — añado color al subtítulo */}
             <motion.div variants={fadeInUp} className="mb-5 space-y-0.5">
               <p className="text-lg sm:text-xl font-medium text-zinc-200">{personal.title}</p>
               <p className="text-lg sm:text-xl font-medium text-indigo-400">+ {personal.subtitle}</p>
@@ -103,7 +101,6 @@ export function Hero() {
               {personal.location}
             </motion.div>
 
-            {/* CTAs */}
             <motion.div variants={fadeInUp} className="flex flex-wrap gap-3">
               <a
                 href="#proyectos"
@@ -114,7 +111,7 @@ export function Hero() {
                   animation: 'pulse-glow 3s ease-in-out infinite',
                 }}
               >
-                Ver proyectos
+                {t.hero.viewProjects}
                 <ArrowDown size={14} />
               </a>
               <a
@@ -125,12 +122,12 @@ export function Hero() {
                   boxShadow: 'inset 0 1px 0 rgba(255,255,255,0.07), 0 0 0 1px rgba(255,255,255,0.08)',
                 }}
               >
-                Contactar
+                {t.hero.contact}
               </a>
             </motion.div>
           </motion.div>
 
-          {/* ── Terminal ──────────────────────────────────── */}
+          {/* Terminal */}
           <motion.div
             initial={{ opacity: 0, x: 24 }}
             animate={{ opacity: 1, x: 0 }}

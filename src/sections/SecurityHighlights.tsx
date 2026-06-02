@@ -1,30 +1,25 @@
 import { motion } from 'framer-motion'
 import { CheckCircle2, Shield } from 'lucide-react'
-import { portfolio } from '../content/portfolio'
+import { usePortfolio } from '../hooks/usePortfolio'
+import { useStrings } from '../i18n/strings'
 import { Divider } from '../components/ui/Divider'
 import { fadeInUp, staggerContainer } from '../lib/animations'
 
 export function SecurityHighlights() {
-  const { securityHighlights } = portfolio
+  const { securityHighlights } = usePortfolio()
+  const t = useStrings()
 
   return (
     <section id="seguridad" className="relative py-24 lg:py-32 overflow-hidden">
       <Divider />
 
-      {/* Fondo con tinte esmeralda muy suave */}
       <div
         className="absolute inset-0 pointer-events-none"
-        style={{
-          background:
-            'radial-gradient(ellipse at 50% 0%, rgba(16,185,129,0.05) 0%, transparent 65%)',
-        }}
+        style={{ background: 'radial-gradient(ellipse at 50% 0%, rgba(16,185,129,0.05) 0%, transparent 65%)' }}
       />
       <div
         className="absolute bottom-0 inset-x-0 h-px pointer-events-none"
-        style={{
-          background:
-            'linear-gradient(90deg, transparent, rgba(16,185,129,0.15), transparent)',
-        }}
+        style={{ background: 'linear-gradient(90deg, transparent, rgba(16,185,129,0.15), transparent)' }}
       />
 
       <div className="relative max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -64,8 +59,7 @@ export function SecurityHighlights() {
               className="rounded-2xl p-6 transition-all duration-300 hover:-translate-y-0.5"
               style={{
                 background: 'rgba(16,185,129,0.03)',
-                boxShadow:
-                  'inset 0 1px 0 rgba(255,255,255,0.06), 0 0 0 1px rgba(16,185,129,0.12)',
+                boxShadow: 'inset 0 1px 0 rgba(255,255,255,0.06), 0 0 0 1px rgba(16,185,129,0.12)',
               }}
             >
               <div className="text-lg mb-3">{cat.icon}</div>
@@ -99,23 +93,16 @@ export function SecurityHighlights() {
           <div className="flex items-center gap-3">
             <Shield size={16} className="text-emerald-500/70 shrink-0" />
             <div>
-              <p className="font-semibold text-zinc-200 text-sm">
-                OWASP Top 10 awareness certificado
-              </p>
-              <p className="text-xs text-zinc-600 mt-0.5">
-                Máster en Ciberseguridad · Aplicado en cada proyecto
-              </p>
+              <p className="font-semibold text-zinc-200 text-sm">{t.security.owasp}</p>
+              <p className="text-xs text-zinc-600 mt-0.5">{t.security.owaspSub}</p>
             </div>
           </div>
           <a
             href="#proyectos"
             className="shrink-0 px-4 py-2 text-xs font-mono text-emerald-500/70 hover:text-emerald-400 rounded-lg transition-all duration-200"
-            style={{
-              background: 'rgba(16,185,129,0.05)',
-              boxShadow: '0 0 0 1px rgba(16,185,129,0.15)',
-            }}
+            style={{ background: 'rgba(16,185,129,0.05)', boxShadow: '0 0 0 1px rgba(16,185,129,0.15)' }}
           >
-            Ver proyectos →
+            {t.security.viewProjects}
           </a>
         </motion.div>
       </div>

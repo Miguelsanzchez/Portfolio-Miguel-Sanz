@@ -2,18 +2,14 @@ import { useState, useEffect } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { Menu, X } from 'lucide-react'
 import { portfolio } from '../../content/portfolio'
-
-const navLinks = [
-  { label: 'Skills',      href: '#skills' },
-  { label: 'Proyectos',   href: '#proyectos' },
-  { label: 'Seguridad',   href: '#seguridad' },
-  { label: 'Experiencia', href: '#experiencia' },
-  { label: 'Contacto',    href: '#contacto' },
-]
+import { useLanguage } from '../../i18n/LanguageContext'
+import { useStrings } from '../../i18n/strings'
 
 export function Header() {
   const [scrolled, setScrolled]     = useState(false)
   const [mobileOpen, setMobileOpen] = useState(false)
+  const { lang, setLang }           = useLanguage()
+  const t                           = useStrings()
 
   useEffect(() => {
     const fn = () => setScrolled(window.scrollY > 24)
@@ -57,7 +53,7 @@ export function Header() {
 
           {/* Nav desktop */}
           <nav className="hidden md:flex items-center gap-0.5">
-            {navLinks.map((link) => (
+            {t.nav.map((link) => (
               <a
                 key={link.href}
                 href={link.href}
@@ -69,16 +65,34 @@ export function Header() {
           </nav>
 
           {/* Derecha desktop */}
-          <div className="hidden md:flex items-center gap-4">
+          <div className="hidden md:flex items-center gap-3">
+
+            {/* Selector de idioma */}
+            <div className="flex items-center gap-1">
+              {(['es', 'en'] as const).map((l) => (
+                <button
+                  key={l}
+                  onClick={() => setLang(l)}
+                  className={`text-base leading-none transition-all duration-150 rounded px-1 py-0.5 ${
+                    lang === l ? 'opacity-100 scale-110' : 'opacity-30 hover:opacity-60'
+                  }`}
+                  aria-label={l === 'es' ? 'Español' : 'English'}
+                >
+                  {l === 'es' ? '🇪🇸' : '🇬🇧'}
+                </button>
+              ))}
+            </div>
+
             {portfolio.personal.available && (
               <span className="flex items-center gap-1.5 text-[11px] font-mono text-zinc-600">
                 <span className="relative flex h-1.5 w-1.5">
                   <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-60" />
                   <span className="relative inline-flex rounded-full h-1.5 w-1.5 bg-emerald-500" />
                 </span>
-                Disponible
+                {lang === 'es' ? 'Disponible' : 'Available'}
               </span>
             )}
+
             {/* CTA */}
             <a
               href={`mailto:${portfolio.personal.email}`}
@@ -88,18 +102,32 @@ export function Header() {
                 boxShadow: 'inset 0 1px 0 rgba(255,255,255,0.7), 0 1px 3px rgba(0,0,0,0.4)',
               }}
             >
-              Contactar
+              {t.hero.contact}
             </a>
           </div>
 
           {/* Mobile toggle */}
-          <button
-            onClick={() => setMobileOpen((v) => !v)}
-            className="md:hidden p-2 rounded-lg text-zinc-600 hover:text-white transition-colors"
-            aria-label="Toggle menu"
-          >
-            {mobileOpen ? <X size={18} /> : <Menu size={18} />}
-          </button>
+          <div className="md:hidden flex items-center gap-2">
+            {(['es', 'en'] as const).map((l) => (
+              <button
+                key={l}
+                onClick={() => setLang(l)}
+                className={`text-base leading-none transition-all duration-150 ${
+                  lang === l ? 'opacity-100' : 'opacity-30'
+                }`}
+                aria-label={l === 'es' ? 'Español' : 'English'}
+              >
+                {l === 'es' ? '🇪🇸' : '🇬🇧'}
+              </button>
+            ))}
+            <button
+              onClick={() => setMobileOpen((v) => !v)}
+              className="p-2 rounded-lg text-zinc-600 hover:text-white transition-colors"
+              aria-label="Toggle menu"
+            >
+              {mobileOpen ? <X size={18} /> : <Menu size={18} />}
+            </button>
+          </div>
         </div>
       </motion.header>
 
@@ -119,7 +147,7 @@ export function Header() {
             }}
           >
             <nav className="max-w-6xl mx-auto px-4 py-4 flex flex-col gap-0.5">
-              {navLinks.map((link) => (
+              {t.nav.map((link) => (
                 <a
                   key={link.href}
                   href={link.href}
@@ -135,7 +163,7 @@ export function Header() {
                 className="mt-2 px-4 py-3 text-sm font-semibold text-center text-black rounded-lg"
                 style={{ background: 'linear-gradient(to bottom, #ffffff, #d4d4d8)' }}
               >
-                Contactar
+                {t.hero.contact}
               </a>
             </nav>
           </motion.div>

@@ -1,6 +1,7 @@
 import { motion } from 'framer-motion'
 import { GraduationCap, MapPin, Calendar, CheckCircle2 } from 'lucide-react'
-import { portfolio } from '../content/portfolio'
+import { usePortfolio } from '../hooks/usePortfolio'
+import { useStrings } from '../i18n/strings'
 import { SectionTitle } from '../components/ui/SectionTitle'
 import { Divider } from '../components/ui/Divider'
 import { fadeInUp, staggerContainer } from '../lib/animations'
@@ -11,17 +12,18 @@ const meta: Record<string, { glyph: string }> = {
 }
 
 export function Education() {
-  const { education } = portfolio
+  const { education } = usePortfolio()
+  const t = useStrings()
 
   return (
     <section id="formacion" className="relative py-24 lg:py-32">
       <Divider />
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
         <SectionTitle
-          eyebrow="formación"
-          title="Base técnica"
-          highlight="sólida"
-          description="Formación oficial reglada que une el desarrollo web profesional con la ciberseguridad aplicada."
+          eyebrow={t.education.eyebrow}
+          title={t.education.title}
+          highlight={t.education.highlight}
+          description={t.education.description}
         />
 
         <motion.div

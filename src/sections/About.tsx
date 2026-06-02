@@ -1,11 +1,13 @@
 import { motion } from 'framer-motion'
-import { portfolio } from '../content/portfolio'
+import { usePortfolio } from '../hooks/usePortfolio'
+import { useStrings } from '../i18n/strings'
 import { SectionTitle } from '../components/ui/SectionTitle'
 import { Divider } from '../components/ui/Divider'
 import { fadeInUp, staggerContainer } from '../lib/animations'
 
 export function About() {
-  const { about, personal } = portfolio
+  const { about, personal } = usePortfolio()
+  const t = useStrings()
 
   return (
     <section id="sobre-mi" className="relative py-24 lg:py-32">
@@ -13,7 +15,6 @@ export function About() {
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="grid lg:grid-cols-[280px_1fr] gap-16 items-start">
 
-          {/* ── Columna izquierda: foto ──────────────────── */}
           {personal.photo && (
             <motion.div
               initial={{ opacity: 0, y: 20 }}
@@ -44,7 +45,6 @@ export function About() {
                 />
               </div>
 
-              {/* Badge nombre bajo la foto */}
               <div
                 className="w-full rounded-xl px-4 py-3"
                 style={{
@@ -62,12 +62,11 @@ export function About() {
             </motion.div>
           )}
 
-          {/* ── Columna derecha: texto + stats ───────────── */}
           <div>
             <SectionTitle
-              eyebrow="sobre mí"
-              title="Desarrollador orientado"
-              highlight="a la seguridad"
+              eyebrow={t.about.eyebrow}
+              title={t.about.title}
+              highlight={t.about.highlight}
             />
 
             <motion.div
@@ -107,13 +106,13 @@ export function About() {
                 }}
               >
                 <p className="text-[10px] font-mono text-zinc-600 mb-1.5 uppercase tracking-widest">
-                  Perfil diferencial
+                  {t.about.profileLabel}
                 </p>
                 <p className="text-sm text-zinc-300 font-medium">
-                  Full Stack + DAW + Máster en Ciberseguridad
+                  {t.about.profileValue}
                 </p>
                 <p className="text-xs text-zinc-600 mt-1">
-                  AppSec y desarrollo seguro integrado desde la arquitectura
+                  {t.about.profileSub}
                 </p>
               </motion.div>
             </motion.div>

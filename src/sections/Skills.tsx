@@ -1,5 +1,6 @@
 import { motion } from 'framer-motion'
-import { portfolio } from '../content/portfolio'
+import { usePortfolio } from '../hooks/usePortfolio'
+import { useStrings } from '../i18n/strings'
 import { SectionTitle } from '../components/ui/SectionTitle'
 import { Divider } from '../components/ui/Divider'
 import { Badge } from '../components/ui/Badge'
@@ -22,17 +23,18 @@ function SkillGroup({ title, glyph, skills }: {
 }
 
 export function Skills() {
-  const { skills } = portfolio
+  const { skills } = usePortfolio()
+  const t = useStrings()
 
   return (
     <section id="skills" className="relative py-24 lg:py-32">
       <Divider />
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
         <SectionTitle
-          eyebrow="habilidades"
-          title="Stack técnico"
-          highlight="completo"
-          description="Desarrollo full stack con enfoque diferencial en seguridad de aplicaciones web."
+          eyebrow={t.skills.eyebrow}
+          title={t.skills.title}
+          highlight={t.skills.highlight}
+          description={t.skills.description}
         />
 
         <motion.div
@@ -44,23 +46,21 @@ export function Skills() {
         >
           <SkillGroup title="Frontend"             glyph="⟨/⟩" skills={skills.frontend} />
           <SkillGroup title="Backend & APIs"        glyph="⬡"   skills={skills.backend} />
-          <SkillGroup title="Bases de datos"        glyph="⊞"   skills={skills.databases} />
-          <SkillGroup title="Herramientas & DevOps" glyph="⚙"   skills={skills.tools} />
+          <SkillGroup title={t.skills.databases}    glyph="⊞"   skills={skills.databases} />
+          <SkillGroup title={t.skills.tools}        glyph="⚙"   skills={skills.tools} />
 
-          {/* Ciberseguridad — ancho completo con tinte esmeralda */}
           <motion.div
             variants={fadeInUp}
             className="md:col-span-2 rounded-2xl p-6 transition-all duration-300 hover:-translate-y-0.5"
             style={{
               background: 'rgba(16,185,129,0.03)',
-              boxShadow:
-                'inset 0 1px 0 rgba(16,185,129,0.1), 0 0 0 1px rgba(16,185,129,0.12)',
+              boxShadow: 'inset 0 1px 0 rgba(16,185,129,0.1), 0 0 0 1px rgba(16,185,129,0.12)',
             }}
           >
             <div className="flex items-center gap-2.5 mb-4 flex-wrap">
               <span className="font-mono text-emerald-500/70 text-sm">⬡</span>
               <h3 className="text-[11px] font-mono text-emerald-500/80 uppercase tracking-[0.18em]">
-                Ciberseguridad Web
+                {t.skills.security}
               </h3>
               <span
                 className="ml-auto text-[10px] font-mono text-emerald-600 px-2.5 py-0.5 rounded-full"
@@ -69,7 +69,7 @@ export function Skills() {
                   boxShadow: '0 0 0 1px rgba(16,185,129,0.15)',
                 }}
               >
-                Máster en Ciberseguridad · OWASP Top 10
+                {t.skills.securityBadge}
               </span>
             </div>
             <div className="flex flex-wrap gap-2">

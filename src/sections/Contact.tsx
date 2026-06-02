@@ -1,11 +1,13 @@
 import { motion } from 'framer-motion'
 import { Mail, Github, Linkedin } from 'lucide-react'
-import { portfolio } from '../content/portfolio'
+import { usePortfolio } from '../hooks/usePortfolio'
+import { useStrings } from '../i18n/strings'
 import { Divider } from '../components/ui/Divider'
 import { fadeInUp, staggerContainer } from '../lib/animations'
 
 export function Contact() {
-  const { personal } = portfolio
+  const { personal } = usePortfolio()
+  const t = useStrings()
 
   return (
     <section id="contacto" className="relative overflow-hidden py-24 lg:py-32">
@@ -15,8 +17,7 @@ export function Contact() {
       <div
         className="absolute bottom-0 left-1/2 -translate-x-1/2 w-[800px] h-[250px] pointer-events-none"
         style={{
-          background:
-            'radial-gradient(ellipse at 50% 100%, rgba(255,255,255,0.04) 0%, transparent 70%)',
+          background: 'radial-gradient(ellipse at 50% 100%, rgba(255,255,255,0.04) 0%, transparent 70%)',
         }}
       />
 
@@ -28,16 +29,15 @@ export function Contact() {
           viewport={{ once: true, margin: '-80px' }}
         >
           <motion.p variants={fadeInUp} className="text-[10px] font-mono text-zinc-700 uppercase tracking-[0.3em] mb-5">
-            contacto
+            {t.contact.title}
           </motion.p>
 
           <motion.h2 variants={fadeInUp} className="text-4xl sm:text-5xl font-black tracking-tight mb-4 text-white">
-            ¿Hablamos?
+            {t.contact.title}
           </motion.h2>
 
           <motion.p variants={fadeInUp} className="text-zinc-500 text-sm leading-relaxed mb-10 max-w-sm mx-auto">
-            Busco oportunidades como Full Stack Developer con especialización en ciberseguridad.
-            Si tienes una oferta o proyecto interesante, escríbeme.
+            {t.contact.description}
           </motion.p>
 
           {/* Email */}
@@ -47,8 +47,7 @@ export function Contact() {
               className="inline-flex items-center gap-3 px-7 py-4 text-black font-semibold rounded-2xl transition-all duration-200 hover:scale-[1.02] active:scale-[0.98] text-sm"
               style={{
                 background: 'linear-gradient(to bottom, #ffffff, #d4d4d8)',
-                boxShadow:
-                  'inset 0 1px 0 rgba(255,255,255,0.8), 0 4px 16px rgba(0,0,0,0.5), 0 1px 3px rgba(0,0,0,0.3)',
+                boxShadow: 'inset 0 1px 0 rgba(255,255,255,0.8), 0 4px 16px rgba(0,0,0,0.5), 0 1px 3px rgba(0,0,0,0.3)',
               }}
             >
               <Mail size={16} />
@@ -85,7 +84,7 @@ export function Contact() {
               <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-60" />
               <span className="relative inline-flex rounded-full h-1.5 w-1.5 bg-emerald-500" />
             </span>
-            Disponible · Incorporación inmediata · España
+            {t.contact.available}
           </motion.div>
         </motion.div>
       </div>
