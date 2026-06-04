@@ -86,7 +86,7 @@ export const portfolio: PortfolioData = {
     title: 'Full Stack Developer',
     subtitle: 'Máster en Ciberseguridad',
     tagline:
-      'Construyo aplicaciones web que llegan a producción: un marketplace agrícola con Stripe, dashboards IoT en tiempo real y automatizaciones para clientes reales — con la seguridad integrada desde el primer commit.',
+      'Desarrollo web fullstack con la seguridad como parte del diseño desde el primer commit. Máster en Ciberseguridad aplicado a proyectos reales: OWASP Top 10, pentesting con Burp Suite, análisis forense y seguridad en APIs REST.',
     location: 'Madrid',
     available: true,
     email: 'miguelsanzchez94@gmail.com',
@@ -98,9 +98,9 @@ export const portfolio: PortfolioData = {
 
   about: {
     paragraphs: [
-      'Desarrollador Full Stack con DAW y Máster en Ciberseguridad. Acabo de terminar mis prácticas en Singular Things, donde desarrollé dashboards IoT con visualización de datos de sensores en tiempo real usando React, Electron y Docker en un equipo profesional con proyectos reales de cliente.',
+      'Desarrollador Full Stack con DAW y Máster en Ciberseguridad. Acabo de terminar mis prácticas en Singular Things, donde desarrollé dashboards IoT con visualización de datos de sensores en tiempo real usando JavaScript, Electron y Docker en un equipo profesional con proyectos reales de cliente.',
       'Como freelance, desarrollé automatizaciones de flujo de trabajo para VoiceUp — integrando APIs externas, bases de datos y envío automático de emails. Mi proyecto estrella es FarmerHand, un marketplace agrícola fullstack con pasarela de pago Stripe, RBAC para 3 tipos de usuario y más de 2.000 horas de desarrollo propio.',
-      'Mi próximo paso es el área DevOps y DevSecOps: integrar seguridad en los pipelines de CI/CD desde el diseño y llevar esa mentalidad a la infraestructura y el despliegue.',
+      'El Máster en Ciberseguridad me ha dado una visión ofensiva y defensiva aplicada a proyectos reales: OWASP Top 10, pentesting web con Burp Suite y OWASP ZAP, análisis forense digital, seguridad en APIs REST y gestión de identidades. No es solo teoría — está integrado en cada proyecto que construyo.',
     ],
     highlights: [
       { label: 'Horas de proyecto', value: '+2.000' },
