@@ -28,17 +28,6 @@ function ProjectCard({
         featured ? 'md:col-span-2' : ''
       }`}
     >
-      {project.improving && (
-        <span
-          className="absolute top-3 right-3 z-10 text-[10px] font-mono px-2.5 py-0.5 rounded-full text-amber-400"
-          style={{
-            background: 'rgba(251,191,36,0.08)',
-            boxShadow: 'inset 0 1px 0 rgba(251,191,36,0.15), 0 0 0 1px rgba(251,191,36,0.15)',
-          }}
-        >
-          en mejora
-        </span>
-      )}
       {project.image && (
         <div className="relative overflow-hidden rounded-t-2xl h-52">
           <img
@@ -56,7 +45,19 @@ function ProjectCard({
         </div>
       )}
 
-      <div className={`flex flex-col flex-1 ${project.image ? 'p-6 pt-4' : featured ? 'p-8' : 'p-6'}`}>
+      <div className={`flex flex-col flex-1 relative ${project.image ? 'p-6 pt-4' : featured ? 'p-8' : 'p-6'}`}>
+
+        {project.improving && (
+          <span
+            className="absolute top-0 right-0 text-xs font-mono px-3 py-1 rounded-full text-amber-400"
+            style={{
+              background: 'rgba(251,191,36,0.08)',
+              boxShadow: 'inset 0 1px 0 rgba(251,191,36,0.15), 0 0 0 1px rgba(251,191,36,0.15)',
+            }}
+          >
+            Proyecto en Mejora
+          </span>
+        )}
 
         <div className="flex items-start justify-between mb-3">
           <div className="flex items-center gap-2 flex-wrap">

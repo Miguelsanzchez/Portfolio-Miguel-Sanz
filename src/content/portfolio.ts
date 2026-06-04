@@ -220,6 +220,7 @@ export const portfolio: PortfolioData = {
       github: 'https://github.com/Miguelsanzchez/Project-5-CSS',
       demo: 'https://project5css.vercel.app/',
       featured: false,
+      improving: true,
       type: 'fullstack',
     },
     {
