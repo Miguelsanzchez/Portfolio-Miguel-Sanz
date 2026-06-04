@@ -24,10 +24,21 @@ function ProjectCard({
   return (
     <motion.div
       variants={fadeInUp}
-      className={`card group hover:border-zinc-800 transition-all duration-300 flex flex-col ${
+      className={`card group hover:border-zinc-800 transition-all duration-300 flex flex-col relative ${
         featured ? 'md:col-span-2' : ''
       }`}
     >
+      {project.improving && (
+        <span
+          className="absolute top-3 right-3 z-10 text-[10px] font-mono px-2.5 py-0.5 rounded-full text-amber-400"
+          style={{
+            background: 'rgba(251,191,36,0.08)',
+            boxShadow: 'inset 0 1px 0 rgba(251,191,36,0.15), 0 0 0 1px rgba(251,191,36,0.15)',
+          }}
+        >
+          en mejora
+        </span>
+      )}
       {project.image && (
         <div className="relative overflow-hidden rounded-t-2xl h-52">
           <img

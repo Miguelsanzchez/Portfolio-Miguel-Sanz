@@ -10,6 +10,7 @@ export interface Project {
   demo?: string
   image?: string
   featured?: boolean
+  improving?: boolean
   type: 'fullstack' | 'security' | 'academic'
 }
 
@@ -185,8 +186,9 @@ export const portfolio: PortfolioData = {
         'Deploy en Vercel y Render con HTTPS automático',
       ],
       github: 'https://github.com/Miguelsanzchez/farmerhand',
-      demo: 'https://proyect-dom-farmerhand.vercel.app/',
+      demo: 'https://farmerhand-web.vercel.app',
       featured: true,
+      improving: true,
       type: 'academic',
     },
     {
@@ -247,7 +249,7 @@ export const portfolio: PortfolioData = {
       type: 'work',
       period: 'Feb 2026 – May 2026',
       description:
-        'Desarrollo de dashboards y aplicaciones frontend para entornos IoT industriales. Integración con APIs, backend y firmware de dispositivos. Visualización de datos de sensores en tiempo real para optimizar procesos internos, con carta de recomendación de la empresa.',
+        'Desarrollo de dashboards y aplicaciones frontend para entornos IoT industriales. Integración con APIs, backend y firmware de dispositivos. Visualización de datos de sensores en tiempo real para optimizar procesos internos.',
       achievements: [
         'Dashboards IoT con visualización de datos de sensores en tiempo real',
         'Integración con APIs REST, backend y firmware de dispositivos',
@@ -255,7 +257,7 @@ export const portfolio: PortfolioData = {
         'Docker para entornos de desarrollo y despliegue reproducibles',
         'Flujo profesional con Git en un equipo con proyectos reales de cliente',
       ],
-      technologies: ['JavaScript', 'React', 'Electron', 'Docker', 'REST APIs', 'Git'],
+      technologies: ['JavaScript', 'Node.js', 'Electron', 'Docker', 'REST APIs', 'Git'],
     },
     {
       id: 'freelance-voiceup',
